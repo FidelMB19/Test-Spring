@@ -1,0 +1,49 @@
+package com.example.demo.vehiculos;
+
+
+import org.springframework.stereotype.Service;
+import java.util.list;
+
+
+@Service
+public class vehiculoService {
+
+
+    private final vehiculoRepository vehiculoRepository;
+
+
+    @Autowired
+    public vehiculoService(VehiculoRepository vehiculoRepository){
+        this.vehiculoRepository = vehiculoRepository;
+    }
+
+
+    public List<vehiculo> getVehiculos() {
+		return this.vehiculoRepository.findAll();
+					
+	}
+
+    public ResponseEntity<Object> newVehiculo(Vehiculo vehiculo){
+        Optional<vehiculo> res = vehiculoRepository.findVehiculoByplaca(vehiculo.getPlaca());
+        hashMap<String, Object> datos = new HashMap<>();
+        
+        
+        if(res.isPresent()){
+            datos.put("error", true);
+            datos.put("message", "ya existe ese vehiculo");
+            return new ResponseEntity<>(
+                datos,
+                HttpStatus.CONFLICT
+            );
+        }
+        vehiculoRepository.save(vehiculo);
+        datos.put("data", vehiculo);
+        datos.put("message", "Registro exitoso");
+        return new ResponseEntity<>(
+            datos,
+            HttpStatus.CREATED
+        );
+            
+    }
+
+}

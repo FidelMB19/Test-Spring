@@ -1,0 +1,113 @@
+package com.example.demo.vehiculos;
+
+import java.time.LocalDate;
+
+
+@package vehiculos;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+@Table
+public class vehiculo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.Identity)
+    private long id;
+
+    @Column(unique = true)
+    private String placa;
+
+    private String modelo;
+
+    private float precio;
+
+    private int anio;
+
+    private LocalDate fechacompra;
+
+    private String observacion;
+
+    public vehiculo() {
+    }
+
+    public vehiculo(long id, String placa, String modelo, float precio, int anio, LocalDate fechacompra,
+            String observacion) {
+        this.id = id;
+        this.placa = placa;
+        this.modelo = modelo;
+        this.precio = precio;
+        this.anio = anio;
+        this.fechacompra = fechacompra;
+        this.observacion = observacion;
+    }
+
+    public vehiculo(String placa, String modelo, float precio, int anio, LocalDate fechacompra, String observacion) {
+        this.placa = placa;
+        this.modelo = modelo;
+        this.precio = precio;
+        this.anio = anio;
+        this.fechacompra = fechacompra;
+        this.observacion = observacion;
+    }
+
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getPlaca() {
+        return this.placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getModelo() {
+        return this.modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public float getPrecio() {
+        return this.precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
+    public int getAnio() {
+        return this.anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
+    public LocalDate getFechacompra() {
+        return this.fechacompra;
+    }
+
+    public void setFechacompra(LocalDate fechacompra) {
+        this.fechacompra = fechacompra;
+    }
+
+    public String getObservacion() {
+        return this.observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
+}
